@@ -31,9 +31,20 @@ enum Constants {
         static let imageMemoryCapacity = 50 * 1024 * 1024 // 50 MB
     }
 
+    enum Backend {
+        // Override with your deployed URL via Settings bundle or environment
+        static let baseURL: String = {
+            ProcessInfo.processInfo.environment["BACKEND_URL"] ?? "http://localhost:8000"
+        }()
+        static let apiVersion = "v1"
+        static var apiBaseURL: String { "\(baseURL)/\(apiVersion)" }
+    }
+
     enum Keychain {
         static let apiKeyAccount = "nasa_api_key"
         static let service = "com.spaceexplorer.app"
+        static let accessTokenAccount = "backend_access_token"
+        static let refreshTokenAccount = "backend_refresh_token"
     }
 
     enum UserDefaultsKeys {
