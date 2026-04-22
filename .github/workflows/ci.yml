@@ -12,42 +12,50 @@ concurrency:
 
 jobs:
   build-and-test:
-    name: Build & Test (iOS 17)
+    name: Build & Test (iOS)
     runs-on: macos-14
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Select Xcode 15
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
-
-      - name: Show build environment
+      - name: Select latest Xcode 15
         run: |
+          XCODE=$(ls /Applications | grep "Xcode_15" | sort -V | tail -1)
+          sudo xcode-select -s "/Applications/${XCODE}"
+          echo "Selected: ${XCODE}"
           xcodebuild -version
-          swift --version
-          xcrun simctl list devicetypes | grep "iPhone 15 Pro"
+
+      - name: Install xcpretty
+        run: gem install xcpretty --no-document
+
+      - name: List available simulators
+        run: xcrun simctl list runtimes
 
       - name: Build
         run: |
+          set -o pipefail
           xcodebuild build \
             -scheme SpaceExplorer \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            | xcpretty || true
+            COMPILER_INDEX_STORE_ENABLE=NO \
+          | xcpretty
 
       - name: Run Tests
         run: |
+          set -o pipefail
           xcodebuild test \
             -scheme SpaceExplorer \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
             -configuration Debug \
             -resultBundlePath TestResults.xcresult \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            | xcpretty --report junit --output test-results.xml || true
+            COMPILER_INDEX_STORE_ENABLE=NO \
+          | xcpretty --report junit --output test-results.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -58,7 +66,7 @@ jobs:
             TestResults.xcresult
             test-results.xml
 
-      - name: Upload result bundle
+      - name: Upload xcresult on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -70,10 +78,16 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
+
       - name: Install SwiftLint
-        run: brew install swiftlint
+        run: |
+          SWIFTLINT_VERSION="0.54.0"
+          curl -sSL "https://github.com/realm/SwiftLint/releases/download/${SWIFTLINT_VERSION}/swiftlint_macos.pkg" -o swiftlint.pkg
+          sudo installer -pkg swiftlint.pkg -target /
+          swiftlint version
+
       - name: Run SwiftLint
-        run: swiftlint lint --reporter github-actions-logging || true
+        run: swiftlint lint --reporter github-actions-logging
 
   backend-test:
     name: Backend Tests (Python 3.12)
@@ -99,9 +113,11 @@ jobs:
         env:
           NASA_API_KEY: DEMO_KEY
           SECRET_KEY: ci-test-secret-key-32-chars-long-x
-        run: pytest -v --tb=short
+          DATABASE_URL: sqlite+aiosqlite:///./test.db
+          ENVIRONMENT: test
+        run: pytest -v --tb=short --timeout=30
 
-      - name: Upload test report
+      - name: Upload test report on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:

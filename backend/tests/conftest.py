@@ -9,18 +9,13 @@ from app.main import app
 TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
 
 
-@pytest.fixture(scope="session")
-def anyio_backend():
-    return "asyncio"
-
-
 @pytest_asyncio.fixture(scope="function")
 async def db_session():
-    engine = create_async_engine(TEST_DB_URL)
+    engine = create_async_engine(TEST_DB_URL, connect_args={"check_same_thread": False})
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    session_factory = async_sessionmaker(engine, expire_on_commit=False)
-    async with session_factory() as session:
+    factory = async_sessionmaker(engine, expire_on_commit=False)
+    async with factory() as session:
         yield session
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
@@ -33,7 +28,6 @@ async def client(db_session):
         yield db_session
 
     app.dependency_overrides[get_db] = override_db
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         yield ac
     app.dependency_overrides.clear()
