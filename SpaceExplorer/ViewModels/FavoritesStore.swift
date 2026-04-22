@@ -1,4 +1,4 @@
-import Foundation
+import CoreData
 import Combine
 
 @MainActor
@@ -7,18 +7,23 @@ final class FavoritesStore: ObservableObject {
 
     @Published private(set) var favorites: [AstronomyPicture] = []
 
-    private let key = Constants.UserDefaultsKeys.favorites
+    private let context: NSManagedObjectContext
 
-    private init() { load() }
+    private init(context: NSManagedObjectContext = PersistenceController.shared.viewContext) {
+        self.context = context
+        loadFromCoreData()
+        observeContextChanges()
+    }
+
+    // MARK: - Public API
 
     func toggle(_ picture: AstronomyPicture) {
         if isFavorite(picture) {
-            favorites.removeAll { $0.id == picture.id }
+            delete(picture)
         } else {
-            favorites.insert(picture, at: 0)
+            insert(picture)
             HapticFeedback.notification(.success)
         }
-        save()
     }
 
     func isFavorite(_ picture: AstronomyPicture) -> Bool {
@@ -26,27 +31,51 @@ final class FavoritesStore: ObservableObject {
     }
 
     func remove(at offsets: IndexSet) {
-        favorites.remove(atOffsets: offsets)
-        save()
+        let toDelete = offsets.map { favorites[$0] }
+        toDelete.forEach { delete($0) }
     }
 
     func clearAll() {
-        favorites.removeAll()
-        save()
+        let request = FavoriteEntity.allFetchRequest()
+        guard let entities = try? context.fetch(request) else { return }
+        entities.forEach { context.delete($0) }
+        PersistenceController.shared.save()
     }
 
-    // MARK: - Persistence
+    // MARK: - Private CoreData
 
-    private func save() {
-        guard let data = try? JSONEncoder().encode(favorites) else { return }
-        UserDefaults.standard.set(data, forKey: key)
+    private func insert(_ picture: AstronomyPicture) {
+        _ = FavoriteEntity.from(picture, context: context)
+        PersistenceController.shared.save()
     }
 
-    private func load() {
-        guard
-            let data = UserDefaults.standard.data(forKey: key),
-            let items = try? JSONDecoder().decode([AstronomyPicture].self, from: data)
-        else { return }
-        favorites = items
+    private func delete(_ picture: AstronomyPicture) {
+        let request = FavoriteEntity.fetchRequest(for: picture.id)
+        guard let entity = try? context.fetch(request).first else { return }
+        context.delete(entity)
+        PersistenceController.shared.save()
     }
+
+    private func loadFromCoreData() {
+        let request = FavoriteEntity.allFetchRequest()
+        favorites = (try? context.fetch(request))?.map { $0.toAstronomyPicture() } ?? []
+    }
+
+    private func observeContextChanges() {
+        NotificationCenter.default.addObserver(
+            forName: .NSManagedObjectContextDidSave,
+            object: context,
+            queue: .main
+        ) { [weak self] _ in
+            self?.loadFromCoreData()
+        }
+    }
+}
+
+// MARK: - Preview support
+
+extension FavoritesStore {
+    static let preview: FavoritesStore = FavoritesStore(
+        context: PersistenceController.preview.viewContext
+    )
 }

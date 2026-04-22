@@ -30,41 +30,50 @@ actor NASAService: NASAServiceProtocol {
     }
 
     func fetchAPOD(count: Int = Constants.APOD.defaultCount) async throws -> [AstronomyPicture] {
-        var components = baseComponents(path: "/planetary/apod")
-        components.queryItems?.append(contentsOf: [
-            URLQueryItem(name: "count", value: "\(count)")
-        ])
-        return try await fetch([AstronomyPicture].self, from: components)
+        try await withRetry(policy: .standard, retryIf: { ($0 as? AppError)?.isRetryable ?? true }) {
+            var components = self.baseComponents(path: "/planetary/apod")
+            components.queryItems?.append(contentsOf: [
+                URLQueryItem(name: "count", value: "\(count)"),
+                URLQueryItem(name: "thumbs", value: "true")
+            ])
+            return try await self.fetch([AstronomyPicture].self, from: components)
+        }
     }
 
     func fetchAPODByDateRange(startDate: String, endDate: String) async throws -> [AstronomyPicture] {
-        var components = baseComponents(path: "/planetary/apod")
-        components.queryItems?.append(contentsOf: [
-            URLQueryItem(name: "start_date", value: startDate),
-            URLQueryItem(name: "end_date",   value: endDate),
-            URLQueryItem(name: "thumbs",     value: "true")
-        ])
-        return try await fetch([AstronomyPicture].self, from: components)
+        try await withRetry(policy: .standard, retryIf: { ($0 as? AppError)?.isRetryable ?? true }) {
+            var components = self.baseComponents(path: "/planetary/apod")
+            components.queryItems?.append(contentsOf: [
+                URLQueryItem(name: "start_date", value: startDate),
+                URLQueryItem(name: "end_date",   value: endDate),
+                URLQueryItem(name: "thumbs",     value: "true")
+            ])
+            return try await self.fetch([AstronomyPicture].self, from: components)
+        }
     }
 
     func fetchMarsPhotos(rover: MarsRover, sol: Int, camera: String? = nil) async throws -> [MarsPhoto] {
-        var components = baseComponents(path: "/mars-photos/api/v1/rovers/\(rover.rawValue)/photos")
-        components.queryItems?.append(URLQueryItem(name: "sol", value: "\(sol)"))
-        if let camera, camera != "All" {
-            components.queryItems?.append(URLQueryItem(name: "camera", value: camera.lowercased()))
+        try await withRetry(policy: .standard, retryIf: { ($0 as? AppError)?.isRetryable ?? true }) {
+            var components = self.baseComponents(path: "/mars-photos/api/v1/rovers/\(rover.rawValue)/photos")
+            components.queryItems?.append(URLQueryItem(name: "sol", value: "\(sol)"))
+            if let camera, camera != "All" {
+                components.queryItems?.append(URLQueryItem(name: "camera", value: camera.lowercased()))
+            }
+            let response = try await self.fetch(MarsPhotoResponse.self, from: components)
+            return response.photos
         }
-        let response = try await fetch(MarsPhotoResponse.self, from: components)
-        return response.photos
     }
 
     func fetchMarsPhotosByDate(rover: MarsRover, earthDate: String, camera: String? = nil) async throws -> [MarsPhoto] {
-        var components = baseComponents(path: "/mars-photos/api/v1/rovers/\(rover.rawValue)/photos")
-        components.queryItems?.append(URLQueryItem(name: "earth_date", value: earthDate))
-        if let camera, camera != "All" {
-            components.queryItems?.append(URLQueryItem(name: "camera", value: camera.lowercased()))
+        try await withRetry(policy: .standard, retryIf: { ($0 as? AppError)?.isRetryable ?? true }) {
+            var components = self.baseComponents(path: "/mars-photos/api/v1/rovers/\(rover.rawValue)/photos")
+            components.queryItems?.append(URLQueryItem(name: "earth_date", value: earthDate))
+            if let camera, camera != "All" {
+                components.queryItems?.append(URLQueryItem(name: "camera", value: camera.lowercased()))
+            }
+            let response = try await self.fetch(MarsPhotoResponse.self, from: components)
+            return response.photos
         }
-        let response = try await fetch(MarsPhotoResponse.self, from: components)
-        return response.photos
     }
 
     // MARK: - Private helpers
@@ -95,8 +104,7 @@ actor NASAService: NASAServiceProtocol {
         }
 
         do {
-            let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: data)
+            return try JSONDecoder().decode(T.self, from: data)
         } catch {
             throw AppError.decodingFailed(error.localizedDescription)
         }

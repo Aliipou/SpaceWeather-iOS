@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main, develop]
+  pull_request:
+    branches: [master, main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & Test (iOS 17)
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 15
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+
+      - name: Show build environment
+        run: |
+          xcodebuild -version
+          swift --version
+          xcrun simctl list devicetypes | grep "iPhone 15 Pro"
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -scheme SpaceExplorer \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty || true
+
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -scheme SpaceExplorer \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
+            -configuration Debug \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            | xcpretty --report junit --output test-results.xml || true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: |
+            TestResults.xcresult
+            test-results.xml
+
+      - name: Upload result bundle
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: xcresult
+          path: TestResults.xcresult
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging || true

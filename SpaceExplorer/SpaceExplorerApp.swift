@@ -1,13 +1,17 @@
 import SwiftUI
+import BackgroundTasks
 
 @main
 struct SpaceExplorerApp: App {
     @StateObject private var favorites = FavoritesStore.shared
     @StateObject private var network = NetworkMonitor.shared
+    @StateObject private var notifications = NotificationManager.shared
+    @StateObject private var deepLinkHandler = DeepLinkHandler.shared
 
     init() {
         configureURLCache()
         configureAppearance()
+        BackgroundTaskManager.shared.registerTasks()
     }
 
     var body: some Scene {
@@ -15,7 +19,16 @@ struct SpaceExplorerApp: App {
             ContentView()
                 .environmentObject(favorites)
                 .environmentObject(network)
+                .environmentObject(notifications)
+                .environmentObject(deepLinkHandler)
+                .environment(\.managedObjectContext, PersistenceController.shared.viewContext)
                 .preferredColorScheme(.dark)
+                .onOpenURL { url in
+                    deepLinkHandler.handle(url: url)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .openAPODTab)) { _ in
+                    deepLinkHandler.pendingLink = .apodList
+                }
         }
     }
 
