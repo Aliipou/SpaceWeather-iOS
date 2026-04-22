@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* SpaceExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* SpaceExplorerApp.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002 /* ContentView.swift */; };
+		AA000010 /* AstronomyPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100010 /* AstronomyPicture.swift */; };
+		AA000011 /* MarsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100011 /* MarsPhoto.swift */; };
+		AA000012 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100012 /* AppError.swift */; };
+		AA000020 /* NASAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100020 /* NASAService.swift */; };
+		AA000021 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100021 /* NetworkMonitor.swift */; };
+		AA000030 /* APODViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100030 /* APODViewModel.swift */; };
+		AA000031 /* MarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100031 /* MarsViewModel.swift */; };
+		AA000032 /* FavoritesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100032 /* FavoritesStore.swift */; };
+		AA000040 /* SpaceTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100040 /* SpaceTheme.swift */; };
+		AA000041 /* StarFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100041 /* StarFieldView.swift */; };
+		AA000042 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100042 /* CachedAsyncImage.swift */; };
+		AA000043 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100043 /* ErrorView.swift */; };
+		AA000050 /* APODListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100050 /* APODListView.swift */; };
+		AA000051 /* APODCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100051 /* APODCardView.swift */; };
+		AA000052 /* APODDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100052 /* APODDetailView.swift */; };
+		AA000053 /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100053 /* FullScreenImageView.swift */; };
+		AA000060 /* MarsRoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100060 /* MarsRoverView.swift */; };
+		AA000061 /* MarsPhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100061 /* MarsPhotoDetailView.swift */; };
+		AA000070 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100070 /* FavoritesView.swift */; };
+		AA000080 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100080 /* SettingsView.swift */; };
+		AA000090 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100090 /* OnboardingView.swift */; };
+		AA000100 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100100 /* Constants.swift */; };
+		AA000101 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100101 /* ImageCache.swift */; };
+		AA000102 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100102 /* HapticFeedback.swift */; };
+		AA000103 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100103 /* DateFormatters.swift */; };
+		/* Tests */
+		AB000001 /* MockNASAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100001 /* MockNASAService.swift */; };
+		AB000002 /* APODViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100002 /* APODViewModelTests.swift */; };
+		AB000003 /* MarsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100003 /* MarsViewModelTests.swift */; };
+		AB000004 /* FavoritesStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100004 /* FavoritesStoreTests.swift */; };
+		AB000005 /* AstronomyPictureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100005 /* AstronomyPictureTests.swift */; };
+		AB000006 /* AppErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100006 /* AppErrorTests.swift */; };
+		AB000007 /* DateFormattersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB100007 /* DateFormattersTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA100001 /* SpaceExplorerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceExplorerApp.swift; sourceTree = "<group>"; };
+		AA100002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA100010 /* AstronomyPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyPicture.swift; sourceTree = "<group>"; };
+		AA100011 /* MarsPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhoto.swift; sourceTree = "<group>"; };
+		AA100012 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		AA100020 /* NASAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASAService.swift; sourceTree = "<group>"; };
+		AA100021 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		AA100030 /* APODViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODViewModel.swift; sourceTree = "<group>"; };
+		AA100031 /* MarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewModel.swift; sourceTree = "<group>"; };
+		AA100032 /* FavoritesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStore.swift; sourceTree = "<group>"; };
+		AA100040 /* SpaceTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTheme.swift; sourceTree = "<group>"; };
+		AA100041 /* StarFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarFieldView.swift; sourceTree = "<group>"; };
+		AA100042 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		AA100043 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		AA100050 /* APODListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODListView.swift; sourceTree = "<group>"; };
+		AA100051 /* APODCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODCardView.swift; sourceTree = "<group>"; };
+		AA100052 /* APODDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODDetailView.swift; sourceTree = "<group>"; };
+		AA100053 /* FullScreenImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
+		AA100060 /* MarsRoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverView.swift; sourceTree = "<group>"; };
+		AA100061 /* MarsPhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhotoDetailView.swift; sourceTree = "<group>"; };
+		AA100070 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		AA100080 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA100090 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AA100100 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AA100101 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		AA100102 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
+		AA100103 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
+		AB100001 /* MockNASAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNASAService.swift; sourceTree = "<group>"; };
+		AB100002 /* APODViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODViewModelTests.swift; sourceTree = "<group>"; };
+		AB100003 /* MarsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsViewModelTests.swift; sourceTree = "<group>"; };
+		AB100004 /* FavoritesStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStoreTests.swift; sourceTree = "<group>"; };
+		AB100005 /* AstronomyPictureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyPictureTests.swift; sourceTree = "<group>"; };
+		AB100006 /* AppErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorTests.swift; sourceTree = "<group>"; };
+		AB100007 /* DateFormattersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormattersTests.swift; sourceTree = "<group>"; };
+		AAPROD001 /* SpaceExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAPROD002 /* SpaceExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAINFO001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		AAGROUP_ROOT /* = */ = {
+			isa = PBXGroup;
+			children = (
+				AAGROUP_APP /* SpaceExplorer */,
+				AAGROUP_TESTS /* SpaceExplorerTests */,
+				AAGROUP_PRODUCTS /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAGROUP_PRODUCTS /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAPROD001 /* SpaceExplorer.app */,
+				AAPROD002 /* SpaceExplorerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAGROUP_APP /* SpaceExplorer */ = {
+			isa = PBXGroup;
+			children = (
+				AA100001 /* SpaceExplorerApp.swift */,
+				AA100002 /* ContentView.swift */,
+				AAINFO001 /* Info.plist */,
+				AAGROUP_MODELS /* Models */,
+				AAGROUP_NETWORKING /* Networking */,
+				AAGROUP_VIEWMODELS /* ViewModels */,
+				AAGROUP_VIEWS /* Views */,
+				AAGROUP_UTILS /* Utils */,
+			);
+			path = SpaceExplorer;
+			sourceTree = "<group>";
+		};
+		AAGROUP_MODELS /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA100010 /* AstronomyPicture.swift */,
+				AA100011 /* MarsPhoto.swift */,
+				AA100012 /* AppError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAGROUP_NETWORKING /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AA100020 /* NASAService.swift */,
+				AA100021 /* NetworkMonitor.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWMODELS /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA100030 /* APODViewModel.swift */,
+				AA100031 /* MarsViewModel.swift */,
+				AA100032 /* FavoritesStore.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAGROUP_VIEWS_SHARED /* Shared */,
+				AAGROUP_VIEWS_APOD /* APOD */,
+				AAGROUP_VIEWS_MARS /* Mars */,
+				AAGROUP_VIEWS_FAV /* Favorites */,
+				AAGROUP_VIEWS_SETTINGS /* Settings */,
+				AAGROUP_VIEWS_ONBOARDING /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_SHARED /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA100040 /* SpaceTheme.swift */,
+				AA100041 /* StarFieldView.swift */,
+				AA100042 /* CachedAsyncImage.swift */,
+				AA100043 /* ErrorView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_APOD /* APOD */ = {
+			isa = PBXGroup;
+			children = (
+				AA100050 /* APODListView.swift */,
+				AA100051 /* APODCardView.swift */,
+				AA100052 /* APODDetailView.swift */,
+				AA100053 /* FullScreenImageView.swift */,
+			);
+			path = APOD;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_MARS /* Mars */ = {
+			isa = PBXGroup;
+			children = (
+				AA100060 /* MarsRoverView.swift */,
+				AA100061 /* MarsPhotoDetailView.swift */,
+			);
+			path = Mars;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_FAV /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				AA100070 /* FavoritesView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_SETTINGS /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA100080 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AAGROUP_VIEWS_ONBOARDING /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				AA100090 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		AAGROUP_UTILS /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AA100100 /* Constants.swift */,
+				AA100101 /* ImageCache.swift */,
+				AA100102 /* HapticFeedback.swift */,
+				AA100103 /* DateFormatters.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AAGROUP_TESTS /* SpaceExplorerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB100001 /* MockNASAService.swift */,
+				AB100002 /* APODViewModelTests.swift */,
+				AB100003 /* MarsViewModelTests.swift */,
+				AB100004 /* FavoritesStoreTests.swift */,
+				AB100005 /* AstronomyPictureTests.swift */,
+				AB100006 /* AppErrorTests.swift */,
+				AB100007 /* DateFormattersTests.swift */,
+			);
+			path = SpaceExplorerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AATARGET_APP /* SpaceExplorer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AABCL_APP /* Build configuration list for PBXNativeTarget "SpaceExplorer" */;
+			buildPhases = (
+				AABP_SOURCES /* Sources */,
+				AABP_FRAMEWORKS /* Frameworks */,
+				AABP_RESOURCES /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = SpaceExplorer;
+			productName = SpaceExplorer;
+			productReference = AAPROD001 /* SpaceExplorer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AATARGET_TESTS /* SpaceExplorerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AABCL_TESTS /* Build configuration list for PBXNativeTarget "SpaceExplorerTests" */;
+			buildPhases = (
+				AABP_TEST_SOURCES /* Sources */,
+				AABP_TEST_FRAMEWORKS /* Frameworks */,
+			);
+			buildRules = ();
+			dependencies = (
+				AADEP_TESTS /* PBXTargetDependency */,
+			);
+			name = SpaceExplorerTests;
+			productName = SpaceExplorerTests;
+			productReference = AAPROD002 /* SpaceExplorerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAPROJECT /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AATARGET_APP = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					AATARGET_TESTS = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AATARGET_APP;
+					};
+				};
+			};
+			buildConfigurationList = AABCL_PROJECT /* Build configuration list for PBXProject "SpaceExplorer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAGROUP_ROOT;
+			productRefGroup = AAGROUP_PRODUCTS /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AATARGET_APP /* SpaceExplorer */,
+				AATARGET_TESTS /* SpaceExplorerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AABP_SOURCES /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* SpaceExplorerApp.swift in Sources */,
+				AA000002 /* ContentView.swift in Sources */,
+				AA000010 /* AstronomyPicture.swift in Sources */,
+				AA000011 /* MarsPhoto.swift in Sources */,
+				AA000012 /* AppError.swift in Sources */,
+				AA000020 /* NASAService.swift in Sources */,
+				AA000021 /* NetworkMonitor.swift in Sources */,
+				AA000030 /* APODViewModel.swift in Sources */,
+				AA000031 /* MarsViewModel.swift in Sources */,
+				AA000032 /* FavoritesStore.swift in Sources */,
+				AA000040 /* SpaceTheme.swift in Sources */,
+				AA000041 /* StarFieldView.swift in Sources */,
+				AA000042 /* CachedAsyncImage.swift in Sources */,
+				AA000043 /* ErrorView.swift in Sources */,
+				AA000050 /* APODListView.swift in Sources */,
+				AA000051 /* APODCardView.swift in Sources */,
+				AA000052 /* APODDetailView.swift in Sources */,
+				AA000053 /* FullScreenImageView.swift in Sources */,
+				AA000060 /* MarsRoverView.swift in Sources */,
+				AA000061 /* MarsPhotoDetailView.swift in Sources */,
+				AA000070 /* FavoritesView.swift in Sources */,
+				AA000080 /* SettingsView.swift in Sources */,
+				AA000090 /* OnboardingView.swift in Sources */,
+				AA000100 /* Constants.swift in Sources */,
+				AA000101 /* ImageCache.swift in Sources */,
+				AA000102 /* HapticFeedback.swift in Sources */,
+				AA000103 /* DateFormatters.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AABP_TEST_SOURCES /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000001 /* MockNASAService.swift in Sources */,
+				AB000002 /* APODViewModelTests.swift in Sources */,
+				AB000003 /* MarsViewModelTests.swift in Sources */,
+				AB000004 /* FavoritesStoreTests.swift in Sources */,
+				AB000005 /* AstronomyPictureTests.swift in Sources */,
+				AB000006 /* AppErrorTests.swift in Sources */,
+				AB000007 /* DateFormattersTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AABP_FRAMEWORKS /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AABP_TEST_FRAMEWORKS /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AABP_RESOURCES /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AADEP_TESTS /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AATARGET_APP /* SpaceExplorer */;
+			targetProxy = AADEP_PROXY;
+		};
+		AADEP_PROXY /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAPROJECT /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AATARGET_APP;
+			remoteInfo = SpaceExplorer;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AABC_PROJECT_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		AABC_PROJECT_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AABC_APP_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SpaceExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spaceexplorer.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AABC_APP_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SpaceExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spaceexplorer.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		AABC_TESTS_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spaceexplorer.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceExplorer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpaceExplorer";
+			};
+			name = Debug;
+		};
+		AABC_TESTS_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spaceexplorer.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceExplorer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpaceExplorer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AABCL_PROJECT /* Build configuration list for PBXProject "SpaceExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABC_PROJECT_DEBUG /* Debug */,
+				AABC_PROJECT_RELEASE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABCL_APP /* Build configuration list for PBXNativeTarget "SpaceExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABC_APP_DEBUG /* Debug */,
+				AABC_APP_RELEASE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABCL_TESTS /* Build configuration list for PBXNativeTarget "SpaceExplorerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABC_TESTS_DEBUG /* Debug */,
+				AABC_TESTS_RELEASE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = AAPROJECT /* Project object */;
+}
