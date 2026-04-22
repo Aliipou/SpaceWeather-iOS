@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: spaceexplorer-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NASA_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: spaceexplorer-db
+          property: connectionString
+      - key: ENVIRONMENT
+        value: production
+      - key: SENTRY_DSN
+        sync: false
+      - key: ALLOWED_ORIGINS
+        value: '["https://your-app-domain.com"]'
+    healthCheckPath: /health
+    autoDeploy: true
+
+databases:
+  - name: spaceexplorer-db
+    databaseName: spaceexplorer
+    user: spaceexplorer
+    plan: free

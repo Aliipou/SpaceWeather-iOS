@@ -1,19 +1,43 @@
 version: "3.9"
 
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: spaceexplorer
+      POSTGRES_USER: spaceexplorer
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spaceexplorer"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   api:
     build: .
     ports:
       - "8000:8000"
     environment:
-      - NASA_API_KEY=${NASA_API_KEY:-DEMO_KEY}
-      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
-      - DATABASE_URL=sqlite+aiosqlite:///./spaceexplorer.db
-    volumes:
-      - ./data:/app/data
+      DATABASE_URL: postgresql+asyncpg://spaceexplorer:${POSTGRES_PASSWORD:-devpassword}@db:5432/spaceexplorer
+      NASA_API_KEY: ${NASA_API_KEY:-DEMO_KEY}
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      ENVIRONMENT: development
+      SENTRY_DSN: ${SENTRY_DSN:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+
+volumes:
+  pg_data:
